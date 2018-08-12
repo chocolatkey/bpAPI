@@ -12,10 +12,15 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return \Illuminate\Support\Facades\File::get(app()->basePath('public/search.html'));
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'contents'], function () use ($router) {
+        $router->get('/', 'ApiController@contents');
+        $router->post('/search', 'ApiController@search');
+    });
     $router->post('upsert/{cid}', 'ApiController@upsert');
-    $router->get('contents', 'ApiController@contents');
+    $router->get('stats', 'ApiController@stats');
+
 });

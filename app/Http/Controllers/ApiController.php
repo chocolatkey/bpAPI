@@ -20,6 +20,60 @@ class ApiController extends Controller
         //
     }
 
+    private function getCid($id)
+    {
+        return "TSBA_BW".str_pad($id, 14, "0", STR_PAD_LEFT)."_58";
+    }
+
+    private function getThumb($id)
+    {
+        $cid = getCid($id);
+        return base64_decode("aHR0cHM6Ly9pMC53cC5jb20vc3RvcmUtdHNicC0wMDEuaGVyb2t1LmNvbS5zMy5hbWF6b25hd3MuY29tL3Byb2R1Y3Rpb24vZGVsaXZlcnk=")."/$cid/{$cid}_cover.jpg";
+    }
+
+    public function stats(Request $request)
+    {
+        return response()->json([
+            'contents' => [
+                'count' => Content::count(),
+                'type' => [
+                    'novel' => Content::where('type', '1')->count(),
+                    'comic' => Content::where('type', '2')->count(),
+                ],
+                'format' => [
+                    'reflowable' => Content::where('format', '0')->count(),
+                    'fixedlayout' => Content::where('format', '1')->count(),
+                    'omf' => Content::where('format', '2')->count(),
+                ]
+            ],
+            'authors' => [
+                'count' => Author::count()
+            ],
+            'series' => [
+                'count' => Series::count()
+            ]
+        ]);
+    }
+
+    /**
+     * Get various attribute counts for a query
+     * @param Request $request
+     *
+     */
+    public function count(Request $request)
+    {
+
+    }
+
+    /**
+     * Get paginated results for a query
+     * @param Request $request
+     */
+    public function search(Request $request)
+    {
+
+    }
+
     public function contents(Request $request)
     {
         return Content::paginate(25);
@@ -36,8 +90,6 @@ class ApiController extends Controller
             "description2" => $request->get("description2"),
             "type" => $request->get("type"),
             "format" => $request->get("format"),
-            "updated_at" => Carbon::createFromFormat("Y-m-d\TH:i:sP", $request->get("updated_at")),
-            "deliver_at" => Carbon::createFromFormat("Y-m-d\TH:i:sP", $request->get("deliver_at")),
         ];
         $item = Content::firstOrNew(
             ['id' => $cid], $contentAttrs
@@ -55,11 +107,14 @@ class ApiController extends Controller
         $series->save();
         $item->series()->associate($series);
 
+
+        // Only thing that should change when updating
+        $item->updated_at = Carbon::createFromFormat("Y-m-d\TH:i:sP", $request->get("updated_at"));
+        $item->deliver_at = Carbon::createFromFormat("Y-m-d\TH:i:sP", $request->get("deliver_at"));
+
         $item->save();
 
         return $item;
-
-        //return response()->json(Content::paginate(25));
     }
 
     //

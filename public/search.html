@@ -1,0 +1,140 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="referrer" content="no-referrer"/>
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+    <title>BP Search</title>
+    <link rel="stylesheet" href="https://unpkg.com/teutonic-css@0.7.5/teutonic.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" crossorigin="anonymous">
+    <style>
+        * {
+            font-family: Roboto, "游ゴシック", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+<header class="flex wrap-no ma-v_s ma-b_m gap_xs pa-h_l">
+    <h1>BP Search</h1>
+</header>
+<main class="flex pa-h_l ma-t_m gap_s">
+    <div class="flex gap_s span-full">
+        <div class="flex wrap-no gap-no text_l span-full">
+            <input class="input" type="search" name="date" id="e-search" placeholder="Query">
+            <button class="span-auto pa-r_m button" type="submit" name="e-submit">Submit ›</button>
+        </div>
+        <div class="flex gap_s">
+            <div class="">
+                <h4>Type</h4>
+                <div class="span-auto">
+                    <label class="box pa_s">
+                        <input type="checkbox" class="checkbox" checked> Book/Novel
+                    </label>
+                </div>
+                <div class="span-auto">
+                    <label class="box pa_s">
+                        <input type="checkbox" class="checkbox" checked> Comic/Mag.
+                    </label>
+                </div>
+            </div>
+            <div class="">
+                <h4>Format</h4>
+                <div class="span-auto">
+                    <label class="box pa_s tinted-bg-success">
+                        <input type="checkbox" class="checkbox" checked> Reflowable
+                    </label>
+                </div>
+                <div class="span-auto">
+                    <label class="box pa_s tinted-bg-warn">
+                        <input type="checkbox" class="checkbox" checked> Fixed Layout
+                    </label>
+                </div>
+                <div class="span-auto">
+                    <label class="box pa_s  tinted-bg-danger">
+                        <input type="checkbox" class="checkbox" checked> OMF
+                    </label>
+                </div>
+            </div>
+            <div class="">
+                <h4>Sorting</h4>
+                <div class="grid-auto gap-no">
+                    <label class="box">
+                        <input class="radio" type="radio" name="insurance" checked>
+                        Relevant&nbsp;⍟
+                    </label>
+                    <label class="box">
+                        <input class="radio" type="radio" name="insurance">
+                        Field asc.&nbsp;↑
+                    </label>
+                    <label class="box">
+                        <input class="radio" type="radio" name="insurance">
+                        Field desc.&nbsp;↓
+                    </label>
+                </div>
+                <div class="flex wrap-no gap-no collapse-t ma-t_s">
+                    <label for="e-text" class="span-third span-full-t text-clip box">Field: </label>
+                    <select class="select" id="e-text" disabled>
+                        <option value="choclate">Delivery</option>
+                        <option value="lollipop">Update</option>
+                        <option>Name</option>
+                        <option>ID</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    X-Y of Z results
+    <figure class="r_s pa_m bg-warn-1 span-full">
+        <div class="flex gap_m collapse-p">
+            <div class="span-quarter">
+                <div class="width_xl"><!--ar-1-1-->
+                    <img class="cover" src="https://i0.wp.com/store-tsbp-001.heroku.com.s3.amazonaws.com/production/delivery/TSBA_BW00000000016026_58/TSBA_BW00000000016026_58_cover.jpg">
+                </div>
+            </div>
+            <div class="flex column collapse-t" style="flex-basis: 75%">
+                <h2>仇なす恋華</h2>
+                <div class="tinted-prime"><input onClick="this.select();" type="text" style="width: 235px;" class="input text-select-all text_m pa_xs" value="TSBA_BW00000000016026_58" readonly></div>
+                <table class="table bo-h auto">
+                    <tr>
+                        <td style="width: 80px;">Alt</td>
+                        <td>アダナスレンカ001</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80px;">Author</td>
+                        <td title="ホンジョウサキ アリマカツミ">本庄咲貴 有馬かつみ</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80px;">Series</td>
+                        <td>アダナスレンカ</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80px;">Delivery Timestamp</td>
+                        <td>2013-02-11 00:00:00 <i>(JST)</i></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80px;">Update Timestamp</td>
+                        <td>2013-02-15 21:12:19 <i>(JST)</i></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80px;">Description</td>
+                        <td>幼いころ、ヤクザの抗争で母親を亡くした白木蓮は、自身が組長の息子だと知らされた上、憎むべきヤクザのオンナとして飼われることに。その相手は義理の兄で高岡組組長・立花竜麻。「処女みたいに綺麗な尻のくせに淫乱な野郎だ」——何度も激しく最奥を貫き、すべてを奪い尽くそうとするかのような竜麻に翻弄されながらも、時折垣間見える優しさに戸惑いを覚える蓮。それは次第に背徳の愛へと形を変えていくのだが……。</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </figure>
+    <nav class="flex ma-t_m gap-no read_l span-full">
+        <a href="#" class="button text-center">&larr;</a>
+        <a href="#" class="box text-center">1</a>
+        <a href="#" class="box text-center">2</a>
+        <a href="#" class="box text-center active">3</a>
+        <a href="#" class="box text-center">4</a>
+        <a href="#" class="box text-center">5</a>
+        <div class="box text-center">…</div>
+        <a href="#" class="box text-center">??</a>
+        <a href="#" class="button text-center">&rarr;</a>
+    </nav>
+</main>
+</body>
+</html>
