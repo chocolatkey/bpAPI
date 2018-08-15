@@ -20,17 +20,6 @@ class ApiController extends Controller
         //
     }
 
-    private function getCid($id)
-    {
-        return "TSBA_BW".str_pad($id, 14, "0", STR_PAD_LEFT)."_58";
-    }
-
-    private function getThumb($id)
-    {
-        $cid = getCid($id);
-        return base64_decode("aHR0cHM6Ly9pMC53cC5jb20vc3RvcmUtdHNicC0wMDEuaGVyb2t1LmNvbS5zMy5hbWF6b25hd3MuY29tL3Byb2R1Y3Rpb24vZGVsaXZlcnk=")."/$cid/{$cid}_cover.jpg";
-    }
-
     public function stats(Request $request)
     {
         return response()->json([
@@ -68,10 +57,53 @@ class ApiController extends Controller
     /**
      * Get paginated results for a query
      * @param Request $request
+     * @return any Paginated search results
      */
     public function search(Request $request)
     {
-
+        $data = $request->json()->all();
+        $query = Content::where(function($q) use ($request, $data) {
+            $term = $data['query'];
+            $q->orWhere('name', 'like', "%{$term}%");
+            $q->orWhere('name2', 'like', "%{$term}%");
+            $q->orWhere('description', 'like', "%{$term}%");
+            $q->orWhere('description2', 'like', "%{$term}%");
+        });
+        if (array_key_exists('format', $data))
+            if (is_array($data['format']))
+                $query->where(function ($encapsulated) use ($data) {
+                    for ($i = 0; $i <= 2; ++$i) { // Each type
+                        if(in_array($i, $data['format']))
+                            $encapsulated->orWhere('format', $i);
+                        else
+                            $encapsulated->where('format', '!=', $i);
+                    }
+                });
+        if (array_key_exists('type', $data))
+            if (is_array($data['type']))
+                $query->where(function ($encapsulated) use ($data) {
+                    for ($i = 1; $i <= 2; ++$i) { // Each type
+                        if(in_array($i, $data['type']))
+                            $encapsulated->orWhere('type', $i);
+                        else
+                            $encapsulated->where('type', '!=', $i);
+                    }
+                });
+        if (array_key_exists('sort', $data) && array_key_exists('by', $data))
+            switch ($data['sort']) {
+                case 1:
+                    {
+                        $query->orderBy($data['by'], 'desc');
+                        break;
+                    }
+                case 2:
+                    {
+                        $query->orderBy($data['by'], 'asc');
+                        break;
+                    }
+            }
+        //return dd($query->toSql());
+        return $query->with('author', 'series')->paginate(25);
     }
 
     public function contents(Request $request)
