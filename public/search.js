@@ -34,7 +34,7 @@ function doSearch() {
     searching = true;
     return m.request({
         method: "POST",
-        url: "/api/contents/search",
+        url: "api/contents/search",
         withCredentials: true,
         data: options,
     }).then(function(data) {
