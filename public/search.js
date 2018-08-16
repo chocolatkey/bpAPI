@@ -1,10 +1,13 @@
-// Let's do this the lazy, old-school way
+/**
+ * Search "Engine"
+ * 2018-08-15
+ * Let's do this the lazy, old-school way
+ */
 var response = {
     "current_page": 1,
     "data": [],
     "from": null,
     "last_page": 1,
-    "per_page": 25,
     "to": null,
     "total": 0
 };
@@ -164,18 +167,6 @@ var controls = {
                 m("div", [
                     m("h4", "Ordering"),
                     m("div.grid-auto.gap-no", [
-                        /*m("label.box", [
-                            m("input.radio", {
-                                type: "radio",
-                                name: "sort",
-                                value: 0,
-                                checked: options.sort === 0,
-                                onchange: function(e) {
-                                    options.sort = 0;
-                                    search();
-                                }
-                            })
-                        ], " Relevant\xa0⍟"),*/ // \xa0 is &nbsp;
                         m("label.box", [
                             m("input.radio", {
                                 type: "radio",
@@ -267,7 +258,7 @@ var controls = {
                                     m("td", item.name)
                                 ]),
                                 m("tr", [
-                                    m("td", {style: "width: 80px;"}, "Author"),
+                                    m("td", {style: "width: 80px;", title: item.author.alt}, "Author"),
                                     m("td", item.author.name)
                                 ]),
                                 m("tr", [
@@ -296,14 +287,14 @@ var controls = {
                 style: response.total > 0 ? "font-family: Arial !important;" : "display: none;"
             }, [
                 m("a.button.text-center", {
-                    alt: "First page",
+                    title: "First page",
                     onclick: function(e) {
                         search(1);
                         window.scrollTo(0,0);
                     }
                 }, "⇚"),
                 m("a.button.text-center", {
-                    alt: "Previous page",
+                    title: "Previous page",
                     onclick: function(e) {
                         search(response.current_page === 1 ? 1 : response.current_page - 1);
                         window.scrollTo(0,0);
@@ -311,14 +302,14 @@ var controls = {
                 }, "⇐"),
                 m("span.box.text-center", "Page " + response.current_page + "/" + response.last_page),
                 m("a.button.text-center", {
-                    alt: "Next page",
+                    title: "Next page",
                     onclick: function(e) {
                         search(response.current_page === response.last_page ? response.last_page : response.current_page + 1);
                         window.scrollTo(0,0);
                     }
                 }, "⇒"),
                 m("a.button.text-center", {
-                    alt: "Last page",
+                    title: "Last page",
                     onclick: function(e) {
                         search(response.last_page);
                         window.scrollTo(0,0);
@@ -329,7 +320,6 @@ var controls = {
 }
 
 function start() {
-    console.log("Staaat-o!");
     search();
     m.mount(document.getElementById("root"), controls);
 }
