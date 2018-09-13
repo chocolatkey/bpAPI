@@ -1,7 +1,6 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "bpAPI",
+    "description": "For your eyes only",
     "license": "MIT",
     "type": "project",
     "require": {

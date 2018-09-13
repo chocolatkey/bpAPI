@@ -1,24 +1,24 @@
 /**
  * Search "Engine"
- * 2018-08-15
+ * 2018-09-13
  * Let's do this the lazy, old-school way
  */
 var response = {
-    "current_page": 1,
-    "data": [],
-    "from": null,
-    "last_page": 1,
-    "to": null,
-    "total": 0
+    current_page: 1,
+    data: [],
+    from: null,
+    last_page: 1,
+    to: null,
+    total: 0
 };
 
 var options = {
-    "query": "",
-    "type": [1,2],
-    "format": [0,1,2],
-    "sort": 1,
-    "by": "id",
-    "page": 1
+    query: "",
+    type: [1,2],
+    format: [0,1,2],
+    sort: 1,
+    by: "id",
+    page: 1
 };
 
 var searching = false;
@@ -97,8 +97,10 @@ var controls = {
                     id: "e-search",
                     placeholder: "Just start typing your query here",
                     onkeyup: function(e) {
+                        if(options.query === e.target.value)
+                            return; // Only search if value has changed
                         options.query = e.target.value;
-                        search()
+                        search();
                     }
                 })
             ]),
