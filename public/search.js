@@ -247,6 +247,7 @@ var controls = {
                                     onclick: function(e) {
                                         this.select();
                                         e.redraw = false;
+                                        document.execCommand("copy");
                                     },
                                     type: "text",
                                     style: "width: 235px;",
