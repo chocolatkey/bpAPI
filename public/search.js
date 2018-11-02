@@ -241,7 +241,7 @@ var controls = {
                             ])
                         ]),
                         m("div.flex.column.collapse-t", {style: "flex-basis: 85%;"}, [
-                            m("h2", item.name),
+                            m("h2", {title: item.name2}, item.name),
                             m("div.tinted-prime", [
                                 m("input.input.text-select-all.text_m.pa_xs", {
                                     onclick: function(e) {
@@ -256,10 +256,6 @@ var controls = {
                                 })
                             ]),
                             m("table.table.bo-h.auto", [
-                                m("tr", [
-                                    m("td", {style: "width: 80px;"}, "Alt"),
-                                    m("td", item.name2)
-                                ]),
                                 m("tr", [
                                     m("td", {style: "width: 80px;", title: item.author.alt}, "Author"),
                                     m("td", item.author.name)
