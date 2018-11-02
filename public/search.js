@@ -1,6 +1,6 @@
 /**
  * Search "Engine"
- * 2018-09-21
+ * 2018-11-01
  * Let's do this the lazy, old-school way
  */
 var response = {
@@ -258,7 +258,7 @@ var controls = {
                             m("table.table.bo-h.auto", [
                                 m("tr", [
                                     m("td", {style: "width: 80px;"}, "Alt"),
-                                    m("td", item.name)
+                                    m("td", item.name2)
                                 ]),
                                 m("tr", [
                                     m("td", {style: "width: 80px;", title: item.author.alt}, "Author"),
